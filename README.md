@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-There is the backedn API which is gc-stoploss
+There is the backend API which is gc-stoploss
 
 ## Available Scripts
 
