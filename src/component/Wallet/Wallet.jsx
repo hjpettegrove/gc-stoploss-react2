@@ -10,7 +10,7 @@ const WalletItem = ({token}) => {
             <img src={token.icon} alt="token image"/>
             <span>{token.symbol}</span>
             <span className="token_value">{toSixDecimals(token.amount)}</span>
-            <span>${toCash(token.value_usd)}</span>
+            <span>{toCash(token.value_usd)}</span>
         </div>
     );
 }
@@ -44,9 +44,9 @@ const Wallet = ({account}) => {
     return walletBalance ? ( 
         <div className="wallet">
             <div className="wallet-balance">
-                <div className="wallet-item">Tokens balance: {formatToCash(walletBalance.balances.token_balance)}</div>
-                <div className="wallet-item">Pairs balance: {formatToCash(walletBalance.balances.pair_balance)}</div>
-                <div className="wallet-item">Total balance: {formatToCash(walletBalance.balances.total_balance)}</div>
+                <div className="wallet-item">Tokens balance: {toCash(walletBalance.balances.token_balance)}</div>
+                <div className="wallet-item">Pairs balance: {toCash(walletBalance.balances.pair_balance)}</div>
+                <div className="wallet-item">Total balance: {toCash(walletBalance.balances.total_balance)}</div>
             </div>
             <div className="token-balance">
 
