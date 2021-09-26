@@ -3,3 +3,18 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.wallet-token-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.wallet-token-item img {
+    width: 32px;
+    height: 32px;
+}
+
+.token_value {
+    width: 96px;
+}
