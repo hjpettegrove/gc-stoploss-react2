@@ -2,9 +2,11 @@ import { useEthers } from '@usedapp/core';
 import { useEffect } from 'react';
 import '../../styles/MenuBar.css';
 
-const MetaMaskConnector = ({handleWalletConnect}) => {
+const MetaMaskConnector = ({handleWalletConnect, handleWalletDisconnect}) => {
 
     const { activateBrowserWallet, account, deactivate } = useEthers();
+    //  FIXME - Does not appear to actually disconnect metamask wallet
+    const disconnect = handleWalletDisconnect(deactivate);
 
     useEffect(() => {
         handleWalletConnect(account)
@@ -14,7 +16,7 @@ const MetaMaskConnector = ({handleWalletConnect}) => {
             <div className="connect-button d-inline-flex justify-content-evenly account-info">
                 {/*<p>{etherBalance && parseFloat(formatEther(etherBalance)).toFixed(5)} ETH</p>*/}
                 <p className="account-number pb-0 py-3 px-3">{account && `${account.slice(0,6)}...${account.slice(account.length-4, account.length)}`}</p>
-                <button onClick={deactivate} type="button" className="btn btn-secondary btn-sm m-2">
+                <button onClick={disconnect} type="button" className="btn btn-secondary btn-sm m-2">
                     Disconnect wallet
                 </button>
             </div>
@@ -52,7 +54,7 @@ const MenuBar = (props) => {
                 </div>
             </nav>
             <div className="d-inline-flex d-flex flew-row justify-content-between ">
-                <MetaMaskConnector handleWalletConnect={props.handleWalletConnect} />
+                <MetaMaskConnector handleWalletConnect={props.handleWalletConnect} handleWalletDisconnect={props.handleWalletDisconnect} />
             </div>
         </div>
     );
