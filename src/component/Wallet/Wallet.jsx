@@ -1,30 +1,13 @@
 import { useEffect, useState } from "react";
-import * as WalletServices from '../../services/WalletService.js';
+//import * as WalletServices from '../../services/WalletService.js';
 import '../../styles/Wallet.css';
 import { toSixDecimals, toCash } from "../../helpers/formatters.js";
+import TokenBalances from "./TokenBalances.jsx";
 
-
-const WalletItem = ({token}) => {
-    return ( 
-        <div className="wallet-token-item">
-            <img src={token.icon} alt="token image"/>
-            <span>{token.symbol}</span>
-            <span className="token_value">{toSixDecimals(token.amount)}</span>
-            <span>{toCash(token.value_usd)}</span>
-        </div>
-    );
-}
-
-
-
-const formatToCash = (amount) => {
-    return parseFloat(amount).toFixed(2)
-}
 
 const Wallet = ({account}) => {
 
     const [walletBalance, setWalletBalance] = useState(null)
-    const [tokenPrices, setTokenPrices] = useState(null)
 
     useEffect(() => {
         let loaded = true
@@ -48,18 +31,9 @@ const Wallet = ({account}) => {
                 <div className="wallet-item">Pairs balance: {toCash(walletBalance.balances.pair_balance)}</div>
                 <div className="wallet-item">Total balance: {toCash(walletBalance.balances.total_balance)}</div>
             </div>
-            <div className="token-balance">
-                <div className="wallet-token-item">
-                    <span>Symbol</span>
-                    <span>Token</span>
-                    <span>Balance</span>
-                    <span>Value USD</span>
-                </div>
-                {walletBalance.assets.tokens.map((token) => {
-                    return <WalletItem token={token}/>
-                })}
 
-            </div>
+            <TokenBalances tokens={walletBalance.assets.tokens} />
+
             <div className="pairs-balance">
                 
             </div>
