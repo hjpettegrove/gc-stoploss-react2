@@ -49,10 +49,16 @@ const Wallet = ({account}) => {
                 <div className="wallet-item">Total balance: {toCash(walletBalance.balances.total_balance)}</div>
             </div>
             <div className="token-balance">
-
+                <div className="wallet-token-item">
+                    <span>Symbol</span>
+                    <span>Token</span>
+                    <span>Balance</span>
+                    <span>Value USD</span>
+                </div>
                 {walletBalance.assets.tokens.map((token) => {
                     return <WalletItem token={token}/>
                 })}
+
             </div>
             <div className="pairs-balance">
                 
